@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Life Adapter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="app-container">
+        
+        <!-- Navbar -->
+        <header class="navbar glass-panel hidden" id="navbar">
+            <h1 class="logo" data-i18n="appName">College Adapter</h1>
+            <div class="nav-controls">
+                <button id="langToggle" class="btn-icon">🌐 EN / KO</button>
+            </div>
+        </header>
+
+        <!-- Onboarding View -->
+        <main id="onboardingView" class="view active">
+            <div class="glass-card onboarding-card fade-in">
+                <h1 data-i18n="onboardingTitle">환영합니다!</h1>
+                <p data-i18n="onboardingDesc">성공적인 대학 생활을 위한 맞춤 설정을 시작합니다.</p>
+                
+                <div class="form-group">
+                    <label data-i18n="selectLang">언어 선택 (Language)</label>
+                    <select id="langSelect">
+                        <option value="ko">한국어 (Korean)</option>
+                        <option value="en">English (영어)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="selectGrade">학년 선택</label>
+                    <select id="gradeSelect">
+                        <option value="freshman" data-i18n="freshman">신입생 (1학년)</option>
+                        <option value="sophomore" data-i18n="sophomore">2학년</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="selectInterest">관심사 (다중 선택 가능)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" value="scholarship"> <span data-i18n="interestScholarship">장학금</span></label>
+                        <label class="checkbox-label"><input type="checkbox" value="club"> <span data-i18n="interestClub">동아리</span></label>
+                        <label class="checkbox-label"><input type="checkbox" value="academics"> <span data-i18n="interestAcademics">학사일정</span></label>
+                    </div>
+                </div>
+
+                <button id="startBtn" class="btn-primary" data-i18n="startBtn">시작하기</button>
+            </div>
+        </main>
+
+        <!-- Dashboard View -->
+        <main id="dashboardView" class="view hidden">
+            <div class="dashboard-header fade-in">
+                <h2 data-i18n="dashGreeting">안녕하세요, 신입생님!</h2>
+                <p data-i18n="dashSubGreeting">오늘의 맞춤형 대학 생활 정보를 확인하세요.</p>
+            </div>
+
+            <div class="dashboard-grid fade-in-up">
+                <!-- Recommended Content -->
+                <section class="glass-card col-span-2">
+                    <div class="section-header">
+                        <h3 data-i18n="recommended">추천 정보</h3>
+                        <span class="badge" data-i18n="personalized">맞춤형</span>
+                    </div>
+                    <div class="recommendation-list" id="recommendationList">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Calendar Widget -->
+                <section class="glass-card">
+                    <h3 data-i18n="importantDates">주요 일정</h3>
+                    <ul class="calendar-list" id="calendarList">
+                        <!-- Populated by JS -->
+                    </ul>
+                </section>
+
+                <!-- Quick Links / Integration -->
+                <section class="glass-card col-span-3">
+                    <h3 data-i18n="quickLinks">빠른 접근</h3>
+                    <div class="quick-links">
+                        <div class="quick-card" onclick="openModal('학교 공지', 'Notices')">
+                            <span class="icon">📢</span>
+                            <h4 data-i18n="notices">학교 공지</h4>
+                        </div>
+                        <div class="quick-card" onclick="openModal('장학금', 'Scholarships')">
+                            <span class="icon">💰</span>
+                            <h4 data-i18n="scholarshipMenu">장학금</h4>
+                        </div>
+                        <div class="quick-card" onclick="openModal('동아리', 'Clubs')">
+                            <span class="icon">👥</span>
+                            <h4 data-i18n="clubsMenu">동아리</h4>
+                        </div>
+                        <div class="quick-card" onclick="openModal('상담/Q&A', 'Q&A')">
+                            <span class="icon">💬</span>
+                            <h4 data-i18n="qnaMenu">상담/Q&A</h4>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Modal (Detail View) -->
+        <div id="detailModal" class="modal hidden">
+            <div class="modal-content glass-card">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <h2 id="modalTitle">제목</h2>
+                <p id="modalBody">내용이 여기에 표시됩니다.</p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
